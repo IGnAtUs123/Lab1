@@ -1,29 +1,48 @@
 ﻿namespace Logic
 {
     using bus;
-    using System.ComponentModel;
+    using DataAccessLayer;
 
     public class Logic
     {
-        private List<Student> students = new List<Student>();
-        public void AddStudent(string name, string speciality, string group, string id) 
+        private readonly IRepository<Student> _repository;
+
+        public Logic(IRepository<Student> repository)
         {
-            if (!students.Contains(new Student { Id = id }))
-            {
-                students.Add(new Student { Name = name, Speciality = speciality, Group = group, Id = id });
-            }
+            _repository = repository;
         }
+
+        public void AddStudent(string name, string speciality, string group, string id)
+        {
+            if (_repository.ReadById(id) != null)
+            {
+                // уже есть студент с таким Id — ничего не делаем
+                return;
+            }
+
+            var student = new Student
+            {
+                Id = id,
+                Name = name,
+                Speciality = speciality,
+                Group = group
+            };
+            _repository.Create(student);
+        }
+
         public void DeleteStudent(string id)
         {
-            students.RemoveAll(item => item.Id == id);
+            _repository.Delete(id);
         }
-        public List<Student> ShowTheListOfStudents ()
+
+        public List<Student> ShowTheListOfStudents()
         {
-            return students;
+            return _repository.ReadAll().ToList();
         }
+
         public List<Student> ShowTheHistogram()
         {
-            return students.OrderBy(x => x.Speciality).ToList();
+            return _repository.ReadAll().OrderBy(x => x.Speciality).ToList();
         }
     }
 }

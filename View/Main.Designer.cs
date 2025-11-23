@@ -1,7 +1,7 @@
 ﻿namespace View
 {
     
-    partial class Главная
+    partial class Main
     {
         /// <summary>
         ///  Required designer variable.
@@ -42,19 +42,21 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(640, 31);
+            addButton.Location = new Point(731, 41);
+            addButton.Margin = new Padding(3, 4, 3, 4);
             addButton.Name = "addButton";
-            addButton.Size = new Size(122, 41);
+            addButton.Size = new Size(139, 55);
             addButton.TabIndex = 0;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
-            addButton.Click += button1_Click;
+            addButton.Click += addButton_Click_1;
             // 
             // removeButton
             // 
-            removeButton.Location = new Point(503, 31);
+            removeButton.Location = new Point(575, 41);
+            removeButton.Margin = new Padding(3, 4, 3, 4);
             removeButton.Name = "removeButton";
-            removeButton.Size = new Size(122, 41);
+            removeButton.Size = new Size(139, 55);
             removeButton.TabIndex = 1;
             removeButton.Text = "Удалить";
             removeButton.UseVisualStyleBackColor = true;
@@ -63,13 +65,13 @@
             // listView
             // 
             listView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, studId });
-            listView.Location = new Point(35, 78);
+            listView.Location = new Point(40, 104);
+            listView.Margin = new Padding(3, 4, 3, 4);
             listView.Name = "listView";
-            listView.Size = new Size(727, 342);
+            listView.Size = new Size(830, 455);
             listView.TabIndex = 2;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = System.Windows.Forms.View.Details;
-            listView.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // columnHeader1
             // 
@@ -93,9 +95,10 @@
             // 
             // showAllButton
             // 
-            showAllButton.Location = new Point(363, 31);
+            showAllButton.Location = new Point(415, 41);
+            showAllButton.Margin = new Padding(3, 4, 3, 4);
             showAllButton.Name = "showAllButton";
-            showAllButton.Size = new Size(122, 41);
+            showAllButton.Size = new Size(139, 55);
             showAllButton.TabIndex = 3;
             showAllButton.Text = "Показать студентов";
             showAllButton.UseVisualStyleBackColor = true;
@@ -103,25 +106,27 @@
             // 
             // histogramButton
             // 
-            histogramButton.Location = new Point(174, 31);
+            histogramButton.Location = new Point(199, 41);
+            histogramButton.Margin = new Padding(3, 4, 3, 4);
             histogramButton.Name = "histogramButton";
-            histogramButton.Size = new Size(170, 41);
+            histogramButton.Size = new Size(194, 55);
             histogramButton.TabIndex = 4;
             histogramButton.Text = "Показать Гистограмму";
             histogramButton.UseVisualStyleBackColor = true;
             histogramButton.Click += histogramButton_Click;
             // 
-            // Главная
+            // Main
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(865, 450);
+            ClientSize = new Size(989, 600);
             Controls.Add(histogramButton);
             Controls.Add(showAllButton);
             Controls.Add(listView);
             Controls.Add(removeButton);
             Controls.Add(addButton);
-            Name = "Главная";
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Main";
             Text = "Главная";
             ResumeLayout(false);
         }

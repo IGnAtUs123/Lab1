@@ -1,11 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System;
+using System.Text;
+using DataAccessLayer;
+using AppLogic = Logic.Logic; // псевдоним для класса Logic
 
-using System;
 namespace MyApp
 {
-    using Logic;
-    using System.Text;
-
     internal class Program
     {
         static string HistogramToString(Dictionary<string, int> histogram)
@@ -13,11 +12,10 @@ namespace MyApp
             int max = histogram.Values.Max();
             var keys = histogram.Keys.ToList();
 
-            const int cellWidth = 7; // ширина ячейки под колонку
+            const int cellWidth = 7;
             var sb = new StringBuilder();
             sb.AppendLine(new string('-', keys.Count * cellWidth));
 
-            // строим сверху вниз
             for (int level = max; level >= 1; level--)
             {
                 foreach (var key in keys)
@@ -30,10 +28,8 @@ namespace MyApp
                 sb.AppendLine();
             }
 
-            // разделитель
             sb.AppendLine(new string('-', keys.Count * cellWidth));
 
-            // подписи под колонками (центрирование)
             foreach (var key in keys)
             {
                 string label = key.Length > cellWidth ? key[..cellWidth] : key;
@@ -44,10 +40,12 @@ namespace MyApp
 
             return sb.ToString();
         }
+
         static void Main(string[] args)
         {
-            var logic = new Logic();
-            
+            var repo = new EfRepository();
+            var logic = new AppLogic(repo);
+
             while (true)
             {
                 Console.WriteLine("Чтобы добавить студента введите 1\nЧтобы удалить студента введите 2\nЧтобы просмотреть список студентов введите 3\nЧтобы просмотреть гистограму введите 4\nЧтобы закончить работу нажмите любую кнопку\n");
@@ -92,7 +90,6 @@ namespace MyApp
                     break;
                 }
             }
-            string exit = Console.ReadLine();
         }
     }
 }

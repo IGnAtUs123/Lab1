@@ -1,46 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Logic;
 
 namespace View
 {
-    using Logic;
     public partial class DeleteForm : Form
     {
-        public Action<string> StudentDeleted;
-        private Logic logic = new Logic();
-        public DeleteForm()
+        private readonly Logic.Logic _logic;
+
+        public DeleteForm(Logic.Logic logic)
         {
             InitializeComponent();
-        }
-
-        private void txtSpec_Click(object sender, EventArgs e)
-        {
-
+            _logic = logic;
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(label43.Text))
+            if (string.IsNullOrWhiteSpace(studId.Text))
             {
-                MessageBox.Show("Вы должны заполнить все поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Введите номер студенческого билета!", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                StudentDeleted?.Invoke(studId.Text);
-                Close();
-            }
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            _logic.DeleteStudent(studId.Text);
+            Close();
         }
     }
 }

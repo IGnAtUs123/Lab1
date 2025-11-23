@@ -1,53 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using AppLogic = Logic.Logic; // псевдоним для класса Logic
 
 namespace View
 {
-    using Logic;
     public partial class AddForm : Form
     {
+        private readonly AppLogic logic;
 
-        public Action<Logic> StudentCreated;
-        private Logic logic = new Logic();
-        public AddForm()
+        // Конструктор принимает общий экземпляр Logic
+        public AddForm(AppLogic logic)
         {
             InitializeComponent();
+            this.logic = logic;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Обработчик кнопки "Добавить"
+        private void addBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtGroup.Text) || string.IsNullOrEmpty(txtSpec.Text) || string.IsNullOrEmpty(labe4.Text))
+            if (string.IsNullOrWhiteSpace(txtName.Text) ||
+                string.IsNullOrWhiteSpace(txtSpec.Text) ||
+                string.IsNullOrWhiteSpace(txtGroup.Text) ||
+                string.IsNullOrWhiteSpace(studId.Text))
             {
-                MessageBox.Show("Вы должны заполнить все поля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Вы должны заполнить все поля!", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                logic.AddStudent(txtName.Text, txtSpec.Text, txtGroup.Text, studId.Text);
-                StudentCreated?.Invoke(logic);
-                Close();
-            }
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+            // Добавляем студента через общий экземпляр Logic
+            logic.AddStudent(txtName.Text, txtSpec.Text, txtGroup.Text, studId.Text);
 
-        }
-
-        private void group_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AddForm_Load(object sender, EventArgs e)
-        {
-
+            // Закрываем форму после добавления
+            Close();
         }
     }
 }

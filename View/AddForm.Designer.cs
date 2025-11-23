@@ -47,7 +47,7 @@
             addBtn.TabIndex = 0;
             addBtn.Text = "Добавить";
             addBtn.UseVisualStyleBackColor = true;
-            addBtn.Click += button1_Click;
+            addBtn.Click += addBtn_Click;
             // 
             // Name
             // 
@@ -58,7 +58,6 @@
             Name.Size = new Size(67, 32);
             Name.TabIndex = 1;
             Name.Text = "ФИО";
-            Name.Click += label1_Click;
             // 
             // group
             // 
@@ -69,7 +68,6 @@
             group.Size = new Size(91, 32);
             group.TabIndex = 2;
             group.Text = "Группа";
-            group.Click += group_Click;
             // 
             // speciality
             // 
@@ -134,7 +132,6 @@
             Controls.Add(Name);
             Controls.Add(addBtn);
             Text = "AddForm";
-            Load += AddForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

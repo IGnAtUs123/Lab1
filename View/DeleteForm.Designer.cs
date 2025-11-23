@@ -52,7 +52,6 @@
             label43.Size = new Size(240, 32);
             label43.TabIndex = 1;
             label43.Text = "Студенческий билет";
-            label43.Click += label1_Click;
             // 
             // studId
             // 
