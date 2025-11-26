@@ -1,5 +1,6 @@
-using bus;
-using DataAccessLayer;
+п»їusing System;
+using System.Windows.Forms;
+using Ninject;
 using Logic;
 
 namespace View
@@ -12,16 +13,9 @@ namespace View
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Выбор реализации:
-            IRepository<Student> repo;
+            var kernel = new StandardKernel(new SimpleConfigModule());
+            var logic = kernel.Get<BusinessLogic>();
 
-            // Использовать EF:
-            //repo = new EfRepository();
-
-            // Или использовать Dapper:
-            repo = new DapperRepository();
-
-            var logic = new Logic.Logic(repo);
             Application.Run(new Main(logic));
         }
     }

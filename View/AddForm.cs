@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
-using AppLogic = Logic.Logic; 
+using Logic;
 
 namespace View
 {
     public partial class AddForm : Form
     {
-        private readonly AppLogic logic;
+        private readonly BusinessLogic _logic;
 
-        public AddForm(AppLogic logic)
+        public AddForm(BusinessLogic logic)
         {
             InitializeComponent();
-            this.logic = logic;
+            _logic = logic;
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -26,8 +26,7 @@ namespace View
                 return;
             }
 
-            logic.AddStudent(txtName.Text, txtSpec.Text, txtGroup.Text, studId.Text);
-
+            _logic.AddStudent(txtName.Text, txtSpec.Text, txtGroup.Text, studId.Text);
             Close();
         }
     }

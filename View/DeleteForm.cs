@@ -1,12 +1,14 @@
-﻿using Logic;
+﻿using System;
+using System.Windows.Forms;
+using Logic;
 
 namespace View
 {
     public partial class DeleteForm : Form
     {
-        private readonly Logic.Logic _logic;
+        private readonly BusinessLogic _logic;
 
-        public DeleteForm(Logic.Logic logic)
+        public DeleteForm(BusinessLogic logic)
         {
             InitializeComponent();
             _logic = logic;

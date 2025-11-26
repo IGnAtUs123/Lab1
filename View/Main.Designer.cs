@@ -49,7 +49,7 @@
             addButton.TabIndex = 0;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
-            addButton.Click += addButton_Click_1;
+            addButton.Click += addButton_Click;
             // 
             // removeButton
             // 

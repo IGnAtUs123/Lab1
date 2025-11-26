@@ -1,8 +1,8 @@
 ﻿using bus;
-using DataAccessLayer;
-using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using Dapper;
+using DataAccessLayer;
+using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 
 public class DapperRepository : IRepository<Student>
 {
@@ -47,5 +47,3 @@ public class DapperRepository : IRepository<Student>
         connection.Execute("DELETE FROM Students WHERE Id = @Id", new { Id = id });
     }
 }
-
-

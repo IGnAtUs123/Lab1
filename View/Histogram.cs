@@ -1,42 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Logic;
 
 namespace View
 {
-    using Logic;
-    using System.Diagnostics;
-
     public partial class Histogram : Form
     {
-        public Histogram(Logic data)
+        private readonly BusinessLogic _logic;
+
+        public Histogram(BusinessLogic logic)
         {
             InitializeComponent();
-            InitializeChart(data);
+            _logic = logic;
         }
-        private void InitializeChart(Logic d)
+
+        private void Histogram_Load(object sender, EventArgs e)
         {
-            var studentData = d.ShowTheHistogram().GroupBy(x => x.Speciality).ToDictionary(g => g.Key, g => g.Count());
+            InitializeChart();
+        }
 
-            Chart chart = new Chart();
-            chart.Dock = DockStyle.Fill;
+        private void InitializeChart()
+        {
+            // Получаем данные студентов и группируем по специальности
+            var studentData = _logic.ShowTheListOfStudents()
+                                    .GroupBy(x => x.Speciality)
+                                    .ToDictionary(g => g.Key, g => g.Count());
 
-            // Создаем область графика
+            // Создаём объект Chart и настраиваем его
+            Chart chart = new Chart { Dock = DockStyle.Fill };
             ChartArea chartArea = new ChartArea();
             chart.ChartAreas.Add(chartArea);
 
-            // Создаем серию данных
+            // Создаём серию данных
             Series series = new Series
             {
                 Name = "StudentSeries",
-                ChartType = SeriesChartType.Column // Тип графика - столбчатая диаграмма
+                ChartType = SeriesChartType.Column
             };
 
             // Добавляем данные в серию
@@ -48,22 +49,12 @@ namespace View
             chart.Series.Add(series);
 
             // Настройка внешнего вида графика
-            chart.Titles.Add("Количество человек по специальностям");
+            chart.Titles.Add("Количество студентов по специальностям");
             chart.Series["StudentSeries"].Color = System.Drawing.Color.Blue;
-            chart.Series["StudentSeries"].IsValueShownAsLabel = true; // Показывать значения над столбцами
+            chart.Series["StudentSeries"].IsValueShownAsLabel = true;
 
             // Добавляем график на форму
             this.Controls.Add(chart);
-        }
-
-        private void Histogram_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

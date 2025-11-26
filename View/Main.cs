@@ -1,19 +1,20 @@
+using System;
+using System.Windows.Forms;
 using Logic;
-using Microsoft.VisualBasic.Logging;
 
 namespace View
 {
     public partial class Main : Form
     {
-        private readonly Logic.Logic _logic;
+        private readonly BusinessLogic _logic;
 
-        public Main(Logic.Logic logic)
+        public Main(BusinessLogic logic)
         {
             InitializeComponent();
             _logic = logic;
         }
 
-        private void addButton_Click_1(object sender, EventArgs e)
+        private void addButton_Click(object sender, EventArgs e)
         {
             var form = new AddForm(_logic);
             form.Show();
@@ -37,7 +38,6 @@ namespace View
                 listView.Items.Add(item);
             }
         }
-
 
         private void histogramButton_Click(object sender, EventArgs e)
         {

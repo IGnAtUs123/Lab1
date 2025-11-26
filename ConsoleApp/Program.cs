@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text;
 using DataAccessLayer;
-using AppLogic = Logic.Logic; // псевдоним для класса Logic
+using AppLogic = Logic.BusinessLogic;
+
 
 namespace MyApp
 {

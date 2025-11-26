@@ -1,12 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using bus;
-using System.IO;
+﻿using bus;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Student> Students { get; set; } = null!;
+        public DbSet<Student> Students { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -14,8 +13,8 @@ namespace DataAccessLayer
             {
                 optionsBuilder.UseSqlServer(
                     @"Data Source=(LocalDB)\MSSQLLocalDB;
-              Initial Catalog=Students;
-              Integrated Security=True");
+                  Initial Catalog=Students;
+                  Integrated Security=True");
             }
         }
 

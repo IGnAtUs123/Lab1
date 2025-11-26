@@ -1,47 +1,35 @@
-﻿namespace Logic
+﻿using bus;
+using DataAccessLayer;
+using System.Collections.Generic;
+
+namespace Logic
 {
-    using bus;
-    using DataAccessLayer;
-
-    public class Logic
+    public class BusinessLogic
     {
-        private readonly IRepository<Student> _repository;
+        public IRepository<Student> Repository { get; }
 
-        public Logic(IRepository<Student> repository)
+        public BusinessLogic(IRepository<Student> repository)
         {
-            _repository = repository;
+            Repository = repository;
         }
 
-        public void AddStudent(string name, string speciality, string group, string id)
+        public void AddStudent(string id, string name, string speciality, string group)
         {
-            if (_repository.ReadById(id) != null)
-            {
-                return;
-            }
-
-            var student = new Student
-            {
-                Id = id,
-                Name = name,
-                Speciality = speciality,
-                Group = group
-            };
-            _repository.Create(student);
+            var student = new Student { Id = id, Name = name, Speciality = speciality, Group = group };
+            Repository.Create(student);
         }
 
-        public void DeleteStudent(string id)
+        public IEnumerable<Student> ShowTheListOfStudents()
         {
-            _repository.Delete(id);
+            return Repository.ReadAll();
         }
 
-        public List<Student> ShowTheListOfStudents()
-        {
-            return _repository.ReadAll().ToList();
-        }
+        public void UpdateStudent(Student s) => Repository.Update(s);
+        public void DeleteStudent(string id) => Repository.Delete(id);
 
-        public List<Student> ShowTheHistogram()
+        public IEnumerable<Student> ShowTheHistogram()
         {
-            return _repository.ReadAll().OrderBy(x => x.Speciality).ToList();
+            return Repository.ReadAll();
         }
     }
 }

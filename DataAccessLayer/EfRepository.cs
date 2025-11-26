@@ -1,46 +1,47 @@
 ﻿using bus;
+using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace DataAccessLayer
+public class EfRepository : IRepository<Student>
 {
-    public class EfRepository : IRepository<Student>
+    private readonly AppDbContext _context;
+
+    public EfRepository(AppDbContext context)
     {
-        private readonly AppDbContext _context;
+        _context = context;
+        _context.Database.EnsureCreated();
+    }
 
-        public EfRepository(AppDbContext? context = null)
+    public void Create(Student entity)
+    {
+        _context.Students.Add(entity);
+        _context.SaveChanges();
+    }
+
+    public IEnumerable<Student> ReadAll()
+    {
+        return _context.Students.AsNoTracking().ToList();
+    }
+
+    public Student ReadById(string id)
+    {
+        return _context.Students.AsNoTracking().FirstOrDefault(s => s.Id == id);
+    }
+
+    public void Update(Student entity)
+    {
+        _context.Students.Update(entity);
+        _context.SaveChanges();
+    }
+
+    public void Delete(string id)
+    {
+        var st = _context.Students.FirstOrDefault(s => s.Id == id);
+        if (st != null)
         {
-            _context = context ?? new AppDbContext();
-            _context.Database.EnsureCreated();
-        }
-
-        public void Create(Student entity)
-        {
-            _context.Students.Add(entity);
-            _context.SaveChanges();
-        }
-
-        public IEnumerable<Student> ReadAll()
-        {
-            return _context.Students.AsNoTracking().ToList();
-        }
-
-        public Student? ReadById(string id)
-        {
-            return _context.Students.Find(id);
-        }
-
-        public void Delete(string id)
-        {
-            var stud = _context.Students.Find(id);
-            if (stud is null) return;
-
-            _context.Students.Remove(stud);
-            _context.SaveChanges();
-        }
-
-        public void Update(Student entity)
-        {
-            _context.Students.Update(entity);
+            _context.Students.Remove(st);
             _context.SaveChanges();
         }
     }
