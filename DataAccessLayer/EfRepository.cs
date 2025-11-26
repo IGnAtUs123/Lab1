@@ -10,7 +10,6 @@ namespace DataAccessLayer
         public EfRepository(AppDbContext? context = null)
         {
             _context = context ?? new AppDbContext();
-            // Создаст таблицу Students в .mdf, если её ещё нет
             _context.Database.EnsureCreated();
         }
 
@@ -27,7 +26,6 @@ namespace DataAccessLayer
 
         public Student? ReadById(string id)
         {
-            // так как ключ строковый и HasKey(Id) задан — Find работает
             return _context.Students.Find(id);
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using AppLogic = Logic.Logic; // псевдоним для класса Logic
+using AppLogic = Logic.Logic; 
 
 namespace View
 {
@@ -8,14 +8,12 @@ namespace View
     {
         private readonly AppLogic logic;
 
-        // Конструктор принимает общий экземпляр Logic
         public AddForm(AppLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
 
-        // Обработчик кнопки "Добавить"
         private void addBtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text) ||
@@ -28,10 +26,8 @@ namespace View
                 return;
             }
 
-            // Добавляем студента через общий экземпляр Logic
             logic.AddStudent(txtName.Text, txtSpec.Text, txtGroup.Text, studId.Text);
 
-            // Закрываем форму после добавления
             Close();
         }
     }

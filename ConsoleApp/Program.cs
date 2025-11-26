@@ -43,7 +43,8 @@ namespace MyApp
 
         static void Main(string[] args)
         {
-            var repo = new EfRepository();
+            //var repo = new EfRepository();
+            var repo = new DapperRepository();
             var logic = new AppLogic(repo);
 
             while (true)

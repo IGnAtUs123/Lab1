@@ -128,6 +128,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "Main";
             Text = "Главная";
+            //Load += Main_Load;
             ResumeLayout(false);
         }
 

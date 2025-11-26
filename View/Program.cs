@@ -1,3 +1,4 @@
+using bus;
 using DataAccessLayer;
 using Logic;
 
@@ -8,13 +9,20 @@ namespace View
         [STAThread]
         static void Main()
         {
-            ApplicationConfiguration.Initialize();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            var repo = new EfRepository();
+            // Выбор реализации:
+            IRepository<Student> repo;
 
-            var lg = new Logic.Logic(repo); 
+            // Использовать EF:
+            //repo = new EfRepository();
 
-            Application.Run(new Main(lg));
+            // Или использовать Dapper:
+            repo = new DapperRepository();
+
+            var logic = new Logic.Logic(repo);
+            Application.Run(new Main(logic));
         }
     }
 }

@@ -44,6 +44,5 @@ namespace View
             var histogram = new Histogram(_logic);
             histogram.Show();
         }
-
     }
 }

@@ -16,7 +16,6 @@
         {
             if (_repository.ReadById(id) != null)
             {
-                // уже есть студент с таким Id — ничего не делаем
                 return;
             }
 

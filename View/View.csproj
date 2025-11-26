@@ -11,9 +11,13 @@
   <ItemGroup>
     <None Remove="DecanatPro.mdf" />
     <None Remove="DecanatPro_log.ldf" />
+    <None Remove="Students.mdf" />
+    <None Remove="Students_log.ldf" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.10.0" />
   </ItemGroup>
 
@@ -23,9 +27,6 @@
 
   <ItemGroup>
     <None Update="students.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Students.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
