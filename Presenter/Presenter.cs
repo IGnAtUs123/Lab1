@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Model;
-using ViewContracts;
+using View;
 
-namespace PresenterLayer
+namespace Presenter
 {
     public class Presenter
     {

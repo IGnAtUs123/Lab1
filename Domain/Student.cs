@@ -1,4 +1,4 @@
-﻿namespace bus
+﻿namespace Domain
 {
     public class Student
     {

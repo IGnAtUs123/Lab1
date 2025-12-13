@@ -1,8 +1,7 @@
 using System;
 using System.Windows.Forms;
 using System.Linq;
-using ViewContracts;
-using bus;
+using Domain;
 
 namespace View
 {

@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using View;
-using PresenterLayer;
-using ViewContracts;
 using Model;
 
-namespace App
+namespace Presenter
 {
     internal static class Program
     {

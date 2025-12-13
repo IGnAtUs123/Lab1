@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using bus;
+using Domain;
 
-namespace ViewContracts
+namespace View
 {
     public interface IView
     {
