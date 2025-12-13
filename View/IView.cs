@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain;
 
 namespace View
 {
@@ -14,7 +13,7 @@ namespace View
         string InputGroup { get; }
         string InputId { get; }
 
-        void ShowStudents(IEnumerable<Student> students);
+        void ShowStudents(IEnumerable<object[]> students);
         void ShowError(string message);
         void ClearInputs();
         void Run();

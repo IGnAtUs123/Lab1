@@ -1,7 +1,6 @@
 using System;
 using System.Windows.Forms;
 using System.Linq;
-using Domain;
 
 namespace View
 {
@@ -23,18 +22,19 @@ namespace View
             removeButton.Click += (s, e) => DeleteRequested?.Invoke(this, EventArgs.Empty);
         }
 
-        public void ShowStudents(IEnumerable<Student> students)
+        public void ShowStudents(IEnumerable<object[]> students)
         {
             listView.Items.Clear();
             foreach (var s in students)
             {
-                var item = new ListViewItem(s.Name);
-                item.SubItems.Add(s.Speciality);
-                item.SubItems.Add(s.Group);
-                item.SubItems.Add(s.Id);
+                var item = new ListViewItem(s[0]?.ToString() ?? "");
+                item.SubItems.Add(s[1]?.ToString() ?? "");
+                item.SubItems.Add(s[2]?.ToString() ?? "");
+                item.SubItems.Add(s[3]?.ToString() ?? "");
                 listView.Items.Add(item);
             }
         }
+
 
         public void ShowError(string message)
         {

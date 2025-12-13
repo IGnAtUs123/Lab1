@@ -18,10 +18,15 @@ namespace Presenter
             _view.AddRequested += OnAddRequested;
             _view.DeleteRequested += OnDeleteRequested;
         }
-
+        private void RefreshView()
+        {
+            var students = _model.GetAll()
+                .Select(s => new object[] { s.Name, s.Speciality, s.Group, s.Id });
+            _view.ShowStudents(students);
+        }
         public void Run()
         {
-            _view.ShowStudents(_model.GetAll());
+            RefreshView();
             _view.Run();
         }
 
@@ -44,7 +49,7 @@ namespace Presenter
 
             _model.AddStudent(_view.InputId, _view.InputName, _view.InputSpeciality, _view.InputGroup);
             _view.ClearInputs();
-            _view.ShowStudents(_model.GetAll());
+            RefreshView();
         }
 
         private void OnDeleteRequested(object sender, EventArgs e)
@@ -57,7 +62,7 @@ namespace Presenter
 
             _model.DeleteStudent(_view.InputId);
             _view.ClearInputs();
-            _view.ShowStudents(_model.GetAll());
+            RefreshView();
         }
     }
 }
