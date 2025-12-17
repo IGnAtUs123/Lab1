@@ -1,0 +1,53 @@
+﻿<Window x:Class="WpfMvvmApp.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:WpfMvvmApp.ViewModel;assembly=ViewModel"
+        Title="Записная книжка студентов" Height="450" Width="600">
+
+    <Window.DataContext>
+        <vm:StudentViewModel/>
+    </Window.DataContext>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Поля ввода и кнопки -->
+            <RowDefinition Height="*"/>
+            <!-- Список студентов -->
+        </Grid.RowDefinitions>
+
+        <!-- Панель ввода и кнопки -->
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,0,0,10">
+            <TextBlock Text="ФИО"/>
+            <TextBox Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" Margin="0,5"/>
+
+            <TextBlock Text="Специализация"/>
+            <TextBox Text="{Binding Specialization, UpdateSourceTrigger=PropertyChanged}" Margin="0,5"/>
+
+            <TextBlock Text="Группа"/>
+            <TextBox Text="{Binding Group, UpdateSourceTrigger=PropertyChanged}" Margin="0,5"/>
+
+            <TextBlock Text="Номер студенческого билета"/>
+            <TextBox Text="{Binding StudentCardNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0,5"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                <Button Content="Добавить" Command="{Binding AddCommand}" Width="100" Margin="5"/>
+                <Button Content="Удалить" Command="{Binding RemoveCommand}" 
+                        CommandParameter="{Binding SelectedItem, ElementName=StudentsList}" Width="100" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Список студентов -->
+        <ListView x:Name="StudentsList" Grid.Row="1" ItemsSource="{Binding Students}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="40"/>
+                    <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding FullName}" Width="150"/>
+                    <GridViewColumn Header="Специализация" DisplayMemberBinding="{Binding Specialization}" Width="120"/>
+                    <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding Group}" Width="80"/>
+                    <GridViewColumn Header="Студ. билет" DisplayMemberBinding="{Binding StudentCardNumber}" Width="120"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

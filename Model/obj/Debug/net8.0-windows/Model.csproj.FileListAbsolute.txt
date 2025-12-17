@@ -1,0 +1,11 @@
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\bin\Debug\net8.0-windows\Model.deps.json
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\bin\Debug\net8.0-windows\Model.dll
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\bin\Debug\net8.0-windows\Model.pdb
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\obj\Debug\net8.0-windows\Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\obj\Debug\net8.0-windows\Model.AssemblyInfoInputs.cache
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\obj\Debug\net8.0-windows\Model.AssemblyInfo.cs
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\obj\Debug\net8.0-windows\Model.csproj.CoreCompileInputs.cache
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\obj\Debug\net8.0-windows\Model.dll
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\obj\Debug\net8.0-windows\refint\Model.dll
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\obj\Debug\net8.0-windows\Model.pdb
+C:\Users\Nana\Desktop\плюсы\Lab5\Model\obj\Debug\net8.0-windows\ref\Model.dll
